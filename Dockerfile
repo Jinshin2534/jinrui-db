@@ -6,13 +6,14 @@ WORKDIR /app
 COPY tools/package.json ./tools/
 RUN cd tools && npm install --omit=dev --no-audit --no-fund
 
-# アプリ本体(serve.mjs / web / dbconn / edtf)＋ 同梱シード(format, data)
+# アプリ本体 ＋ 事前ビルド済みDB(db/data)＋ シード元(format, data)
 COPY tools ./tools
 COPY format ./format
 COPY data ./data
+COPY db ./db
 
 ENV NODE_ENV=production
 ENV PORT=8080
 EXPOSE 8080
-# 起動時にDBが空なら同梱.hrflからPGliteを再構築してから配信(外部DB不要)
+# 事前ビルド済みPGlite(db/data)をそのまま配信(空のときのみ同梱.hrflから再構築)。外部DB不要・低メモリ。
 CMD ["node", "tools/boot.mjs"]

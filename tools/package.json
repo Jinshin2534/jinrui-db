@@ -21,7 +21,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@electric-sql/pglite": "^0.5.3",
+    "@electric-sql/pglite": "0.5.3",
     "pg": "^8.22.0"
   }
 }
