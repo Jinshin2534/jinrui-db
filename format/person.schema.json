@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jinrui-db.example/schema/hrf-person-0.1.json",
+  "title": "HRF Person Record",
+  "description": "Human Record Format v0.1 — one human as a bundle of sourced, time-bound claims around a stable identity spine.",
+  "type": "object",
+  "required": ["hrf", "id", "kind", "status"],
+  "additionalProperties": true,
+  "properties": {
+    "hrf": { "type": "string", "const": "0.1" },
+    "id": { "type": "string", "pattern": "^hrf:person:[0-9A-Za-z_-]+$" },
+    "kind": { "type": "string", "const": "person" },
+    "status": { "enum": ["living", "deceased", "unknown"] },
+    "identity": { "$ref": "#/$defs/identity" },
+    "stewardship": { "$ref": "#/$defs/stewardship" },
+    "names": { "type": "array", "items": { "$ref": "#/$defs/name" } },
+    "claims": { "type": "array", "items": { "$ref": "#/$defs/claim" } },
+    "events": { "type": "array", "items": { "$ref": "#/$defs/event" } },
+    "bonds": { "type": "array", "items": { "$ref": "#/$defs/bond" } },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+    "consent": { "$ref": "#/$defs/consent" },
+    "meta": { "type": "object", "additionalProperties": true }
+  },
+  "$defs": {
+    "edtf": {
+      "type": "object",
+      "description": "EDTF (ISO 8601-2) temporal value. `edtf` is canonical.",
+      "required": ["edtf"],
+      "properties": {
+        "edtf": { "type": "string" },
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "precision": { "enum": ["day", "month", "year", "decade", "century", "unknown"] },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "entityRef": {
+      "type": "object",
+      "properties": {
+        "scheme": { "type": "string" },
+        "value": { "type": ["string", "null"] }
+      },
+      "required": ["scheme"],
+      "additionalProperties": false
+    },
+    "provenanced": {
+      "type": "object",
+      "description": "Common fields shared by every knowledge unit (name/claim/event/bond).",
+      "properties": {
+        "valid": { "$ref": "#/$defs/edtf" },
+        "epistemic": { "enum": ["attested", "asserted", "inferred", "self", "disputed"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "src": { "type": "array", "items": { "type": "string" } },
+        "asserted": {
+          "type": "object",
+          "properties": {
+            "by": { "type": "string" },
+            "at": { "type": "string" },
+            "retracted": { "type": ["string", "null"] }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "external_ids": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["scheme", "value"],
+            "properties": {
+              "scheme": { "type": "string" },
+              "value": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "same_as": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id"],
+            "properties": {
+              "id": { "type": "string" },
+              "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+              "by": { "type": "string" },
+              "note": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "merged_into": { "type": ["string", "null"] },
+        "split_from": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "stewardship": {
+      "type": "object",
+      "required": ["account"],
+      "properties": {
+        "account": { "type": "string", "pattern": "^hrf:account:" },
+        "claimed_at": { "type": "string" },
+        "verification": { "enum": ["email", "gov-id", "oauth", "none"] }
+      },
+      "additionalProperties": false
+    },
+    "name": {
+      "allOf": [{ "$ref": "#/$defs/provenanced" }],
+      "type": "object",
+      "required": ["full"],
+      "properties": {
+        "type": { "enum": ["legal", "birth", "married", "regnal", "pen", "religious", "nick", "romanization", "other"] },
+        "full": { "type": "string" },
+        "parts": {
+          "type": "object",
+          "properties": {
+            "given": { "type": "array", "items": { "type": "string" } },
+            "family": { "type": "array", "items": { "type": "string" } },
+            "particle": { "type": ["string", "null"] }
+          },
+          "additionalProperties": true
+        },
+        "script": { "type": "string", "description": "ISO 15924 e.g. Latn, Jpan, Cyrl" },
+        "lang": { "type": "string", "description": "BCP-47" },
+        "valid": { "$ref": "#/$defs/edtf" },
+        "epistemic": { "enum": ["attested", "asserted", "inferred", "self", "disputed"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "src": { "type": "array", "items": { "type": "string" } }
+      },
+      "additionalProperties": true
+    },
+    "claim": {
+      "allOf": [{ "$ref": "#/$defs/provenanced" }],
+      "type": "object",
+      "required": ["prop", "value"],
+      "properties": {
+        "id": { "type": "string" },
+        "prop": { "type": "string" },
+        "value": {
+          "type": "object",
+          "description": "scalar {text|number} OR entity {entity,ref} OR structured object",
+          "additionalProperties": true
+        },
+        "qualifiers": { "type": "object", "additionalProperties": true }
+      },
+      "additionalProperties": true
+    },
+    "event": {
+      "allOf": [{ "$ref": "#/$defs/provenanced" }],
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string" },
+        "when": { "$ref": "#/$defs/edtf" },
+        "where": {
+          "type": "object",
+          "properties": {
+            "label": { "type": "string" },
+            "ref": { "$ref": "#/$defs/entityRef" },
+            "geo": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 2,
+              "maxItems": 2,
+              "description": "[lat, lon]"
+            }
+          },
+          "additionalProperties": true
+        },
+        "label": { "type": "string" },
+        "participants": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["role"],
+            "properties": {
+              "role": { "type": "string" },
+              "person": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "bond": {
+      "allOf": [{ "$ref": "#/$defs/provenanced" }],
+      "type": "object",
+      "required": ["rel", "with"],
+      "properties": {
+        "id": { "type": "string" },
+        "rel": { "type": "string" },
+        "with": { "type": "string", "pattern": "^hrf:person:" },
+        "via_event": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "source": {
+      "type": "object",
+      "required": ["id", "kind"],
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "enum": ["wikidata", "url", "book", "archival", "census", "oral", "self"] },
+        "ref": { "type": "string" },
+        "retrieved": { "type": "string" },
+        "reliability": { "enum": ["primary", "secondary", "tertiary", "self-reported"] },
+        "license": { "type": "string" },
+        "signature": { "type": ["string", "null"] }
+      },
+      "additionalProperties": false
+    },
+    "consent": {
+      "type": "object",
+      "properties": {
+        "scope": { "enum": ["public", "researchers", "private"] },
+        "fields": {
+          "type": "object",
+          "additionalProperties": { "enum": ["public", "researchers", "private"] }
+        },
+        "rtbf": { "type": "boolean" },
+        "license": { "type": "string" },
+        "signed_by": { "type": "string" },
+        "signature": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

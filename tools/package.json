@@ -1,0 +1,27 @@
+{
+  "name": "@jinrui-db/hrf",
+  "version": "0.1.0",
+  "description": "HRF (Human Record Format) validator & tools — .hrf / .hrfl",
+  "type": "module",
+  "bin": {
+    "hrf": "./hrf.mjs"
+  },
+  "scripts": {
+    "selftest": "node hrf.mjs selftest",
+    "validate": "node hrf.mjs validate ../format/examples",
+    "info": "node hrf.mjs info ../format/examples",
+    "import:selftest": "node import-wikidata.mjs selftest",
+    "db:init": "node db.mjs init",
+    "db:load": "node db.mjs load ../format/examples",
+    "db:demo": "node db.mjs demo",
+    "start": "node serve.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.3",
+    "pg": "^8.22.0"
+  }
+}

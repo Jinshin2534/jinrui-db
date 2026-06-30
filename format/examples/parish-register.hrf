@@ -1,0 +1,48 @@
+{
+  "hrf": "0.1",
+  "id": "hrf:person:01J9PARISH0000000000ANNE",
+  "kind": "person",
+  "status": "deceased",
+  "identity": { "external_ids": [], "same_as": [], "merged_into": null, "split_from": null },
+  "names": [
+    {
+      "type": "legal",
+      "full": "Anne Lefèvre",
+      "parts": { "given": ["Anne"], "family": ["Lefèvre"] },
+      "script": "Latn", "lang": "fr",
+      "epistemic": "attested", "confidence": 0.6, "src": ["src:reg"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "c:residence",
+      "prop": "residence",
+      "value": { "entity": "Paris", "ref": { "scheme": "wikidata", "value": "Q90" } },
+      "valid": { "edtf": "../1703", "precision": "year", "note": "埋葬地から推定。それ以前は不明" },
+      "epistemic": "inferred", "confidence": 0.4, "src": ["src:reg"]
+    }
+  ],
+  "events": [
+    {
+      "id": "e:burial",
+      "type": "death",
+      "when": { "edtf": "1703~", "precision": "year", "note": "埋葬記録より。生年は不明" },
+      "where": { "label": "Saint-Sulpice, Paris" },
+      "epistemic": "attested", "confidence": 0.5, "src": ["src:reg"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "src:reg",
+      "kind": "archival",
+      "ref": "Paris, Saint-Sulpice 教区 埋葬簿 1703, fol. 12",
+      "reliability": "primary",
+      "license": "public-domain",
+      "signature": null
+    }
+  ],
+  "meta": {
+    "created": "2026-06-30",
+    "note": "優雅な縮退の実証: 知識が「名前＋おおよその没年」だけでも、著名人と同一構造で表せる。"
+  }
+}

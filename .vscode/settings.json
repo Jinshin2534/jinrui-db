@@ -1,0 +1,13 @@
+{
+  "//": "拡張子 .hrf を JSON として扱い、person.schema.json で検証/補完する。.hrfl は NDJSON。",
+  "files.associations": {
+    "*.hrf": "json",
+    "*.hrfl": "jsonl"
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["*.hrf"],
+      "url": "./format/person.schema.json"
+    }
+  ]
+}

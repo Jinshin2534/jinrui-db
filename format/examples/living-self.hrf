@@ -1,0 +1,73 @@
+{
+  "hrf": "0.1",
+  "id": "hrf:person:01J9LIVING000000000000001",
+  "kind": "person",
+  "status": "living",
+  "identity": { "external_ids": [], "same_as": [], "merged_into": null, "split_from": null },
+  "stewardship": {
+    "account": "hrf:account:01J9ACCOUNT00000000000001",
+    "claimed_at": "2026-06-30",
+    "verification": "oauth"
+  },
+  "names": [
+    {
+      "type": "legal",
+      "full": "野崎 仁",
+      "parts": { "given": ["仁"], "family": ["野崎"] },
+      "script": "Jpan", "lang": "ja",
+      "epistemic": "self", "confidence": 1.0, "src": ["src:self"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "c:residence",
+      "prop": "residence",
+      "value": { "entity": "Tokyo", "ref": { "scheme": "wikidata", "value": "Q1490" } },
+      "valid": { "edtf": "2026/..", "precision": "year" },
+      "epistemic": "self", "confidence": 1.0, "src": ["src:self"],
+      "asserted": { "by": "hrf:account:01J9ACCOUNT00000000000001", "at": "2026-06-30", "retracted": null }
+    },
+    {
+      "id": "c:occupation",
+      "prop": "occupation",
+      "value": { "text": "ソフトウェア開発" },
+      "epistemic": "self", "confidence": 1.0, "src": ["src:self"]
+    }
+  ],
+  "events": [
+    {
+      "id": "e:birth",
+      "type": "birth",
+      "when": { "edtf": "1990", "precision": "year", "note": "本人申告(年のみ公開)" },
+      "epistemic": "self", "confidence": 1.0, "src": ["src:self"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "src:self",
+      "kind": "self",
+      "ref": "本人による自己申告",
+      "retrieved": "2026-06-30",
+      "reliability": "self-reported",
+      "license": "CC-BY-4.0",
+      "signature": "ed25519:PLACEHOLDER_SIGNATURE_OVER_SELF_CLAIMS"
+    }
+  ],
+  "consent": {
+    "scope": "public",
+    "fields": {
+      "birth_date": "public",
+      "residence": "researchers",
+      "occupation": "public",
+      "contact": "private"
+    },
+    "rtbf": false,
+    "license": "CC-BY-4.0",
+    "signed_by": "hrf:account:01J9ACCOUNT00000000000001",
+    "signature": "ed25519:PLACEHOLDER_SIGNATURE_OVER_CONSENT"
+  },
+  "meta": {
+    "created": "2026-06-30",
+    "note": "生者の自己統治の実証: stewardship＋項目別consent＋epistemic:self＋署名で『本人が本人について述べた』ことを検証可能にする。"
+  }
+}

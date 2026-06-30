@@ -1,0 +1,15 @@
+# Render Blueprint。リポジトリを Render に繋ぎ New → Blueprint で本サービスを作成。
+# DATABASE_URL(Neon/Supabase等の接続文字列)はダッシュボードで設定する(sync:false)。
+services:
+  - type: web
+    name: jinrui-db
+    runtime: node
+    rootDir: tools
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: node boot.mjs
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: NODE_VERSION
+        value: "24"

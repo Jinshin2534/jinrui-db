@@ -1,0 +1,154 @@
+{
+  "hrf": "0.1",
+  "id": "hrf:person:01J9Z3K8QF7M2N6V4T8B0CURIE",
+  "kind": "person",
+  "status": "deceased",
+  "identity": {
+    "external_ids": [
+      { "scheme": "wikidata", "value": "Q7186" },
+      { "scheme": "viaf", "value": "75121530" }
+    ],
+    "same_as": [],
+    "merged_into": null,
+    "split_from": null
+  },
+  "names": [
+    {
+      "type": "birth",
+      "full": "Maria Salomea Skłodowska",
+      "parts": { "given": ["Maria", "Salomea"], "family": ["Skłodowska"] },
+      "script": "Latn", "lang": "pl",
+      "valid": { "edtf": "1867-11-07/1895", "precision": "year" },
+      "epistemic": "attested", "confidence": 0.98, "src": ["src:wd"]
+    },
+    {
+      "type": "married",
+      "full": "Marie Skłodowska-Curie",
+      "parts": { "given": ["Marie"], "family": ["Skłodowska", "Curie"] },
+      "script": "Latn", "lang": "fr",
+      "valid": { "edtf": "1895-07-26/..", "precision": "day" },
+      "epistemic": "attested", "confidence": 0.99, "src": ["src:wd"]
+    },
+    {
+      "type": "romanization",
+      "full": "マリ・キュリー",
+      "script": "Jpan", "lang": "ja",
+      "epistemic": "attested", "confidence": 0.9, "src": ["src:wd"]
+    }
+  ],
+  "claims": [
+    {
+      "id": "c:occupation-physicist",
+      "prop": "occupation",
+      "value": { "entity": "physicist", "ref": { "scheme": "wikidata", "value": "Q169470" } },
+      "valid": { "edtf": "1894/1934", "precision": "year" },
+      "epistemic": "attested", "confidence": 0.97, "src": ["src:wd"]
+    },
+    {
+      "id": "c:occupation-chemist",
+      "prop": "occupation",
+      "value": { "entity": "chemist", "ref": { "scheme": "wikidata", "value": "Q593644" } },
+      "valid": { "edtf": "1894/1934", "precision": "year" },
+      "epistemic": "attested", "confidence": 0.96, "src": ["src:wd"]
+    },
+    {
+      "id": "c:citizenship-ru",
+      "prop": "citizenship",
+      "value": { "entity": "Russian Empire", "ref": { "scheme": "wikidata", "value": "Q34266" } },
+      "qualifiers": { "basis": "birth", "note": "出生時の会議王国＝ロシア帝国支配下" },
+      "valid": { "edtf": "1867-11-07/1895", "precision": "year" },
+      "epistemic": "inferred", "confidence": 0.8, "src": ["src:wd"]
+    },
+    {
+      "id": "c:citizenship-fr",
+      "prop": "citizenship",
+      "value": { "entity": "France", "ref": { "scheme": "wikidata", "value": "Q142" } },
+      "qualifiers": { "basis": "marriage_naturalization" },
+      "valid": { "edtf": "1895/1934", "precision": "year" },
+      "epistemic": "attested", "confidence": 0.92, "src": ["src:wd"]
+    },
+    {
+      "id": "c:cause-of-death",
+      "prop": "cause_of_death",
+      "value": { "entity": "aplastic anemia", "ref": { "scheme": "wikidata", "value": "Q1area" } },
+      "qualifiers": { "note": "長期の放射線被曝に起因とされる" },
+      "epistemic": "disputed", "confidence": 0.7, "src": ["src:wd"]
+    }
+  ],
+  "events": [
+    {
+      "id": "e:birth",
+      "type": "birth",
+      "when": { "edtf": "1867-11-07", "precision": "day" },
+      "where": { "label": "Warsaw", "ref": { "scheme": "wikidata", "value": "Q270" }, "geo": [52.23, 21.01] },
+      "epistemic": "attested", "confidence": 0.99, "src": ["src:wd"]
+    },
+    {
+      "id": "e:marriage-1895",
+      "type": "marriage",
+      "when": { "edtf": "1895-07-26", "precision": "day" },
+      "where": { "label": "Sceaux, France" },
+      "participants": [
+        { "role": "self", "person": "hrf:person:01J9Z3K8QF7M2N6V4T8B0CURIE" },
+        { "role": "spouse", "person": "hrf:person:01J9Z3K8QF7M2N6V4T8PIERRE" }
+      ],
+      "epistemic": "attested", "confidence": 0.98, "src": ["src:wd"]
+    },
+    {
+      "id": "e:nobel-physics-1903",
+      "type": "award",
+      "label": "ノーベル物理学賞",
+      "when": { "edtf": "1903", "precision": "year" },
+      "where": { "label": "Stockholm", "ref": { "scheme": "wikidata", "value": "Q1754" } },
+      "participants": [
+        { "role": "self", "person": "hrf:person:01J9Z3K8QF7M2N6V4T8B0CURIE" },
+        { "role": "co_recipient", "person": "hrf:person:01J9Z3K8QF7M2N6V4T8PIERRE" }
+      ],
+      "epistemic": "attested", "confidence": 0.99, "src": ["src:wd"]
+    },
+    {
+      "id": "e:nobel-chem-1911",
+      "type": "award",
+      "label": "ノーベル化学賞",
+      "when": { "edtf": "1911", "precision": "year" },
+      "where": { "label": "Stockholm" },
+      "epistemic": "attested", "confidence": 0.99, "src": ["src:wd"]
+    },
+    {
+      "id": "e:death",
+      "type": "death",
+      "when": { "edtf": "1934-07-04", "precision": "day" },
+      "where": { "label": "Passy, Haute-Savoie, France" },
+      "epistemic": "attested", "confidence": 0.99, "src": ["src:wd"]
+    }
+  ],
+  "bonds": [
+    {
+      "id": "b:spouse-pierre",
+      "rel": "spouse_of",
+      "with": "hrf:person:01J9Z3K8QF7M2N6V4T8PIERRE",
+      "valid": { "edtf": "1895-07-26/1906-04-19", "precision": "day", "note": "結婚〜ピエール事故死" },
+      "via_event": "e:marriage-1895",
+      "epistemic": "attested", "confidence": 0.99, "src": ["src:wd"]
+    },
+    {
+      "id": "b:child-irene",
+      "rel": "parent_of",
+      "with": "hrf:person:01J9Z3K8QF7M2N6V4T8IRENE",
+      "valid": { "edtf": "1897-09-12/..", "precision": "day" },
+      "epistemic": "attested", "confidence": 0.99, "src": ["src:wd"]
+    }
+  ],
+  "sources": [
+    {
+      "id": "src:wd",
+      "kind": "wikidata",
+      "ref": "Q7186",
+      "retrieved": "2026-06-30",
+      "reliability": "tertiary",
+      "license": "CC0-1.0",
+      "signature": null
+    }
+  ],
+  "meta": { "created": "2026-06-30", "updated": "2026-06-30", "note": "Wikidata取り込みのサンプル。一部のrefは説明用のダミー。" }
+}
