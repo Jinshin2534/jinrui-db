@@ -93,6 +93,7 @@ node tools/serve.mjs   # → http://localhost:5320
 - [x] **閲覧Web**(人物ページ・一生タイムライン・関係グラフ・出典表示・生者consent反映)— `tools/serve.mjs`(:5320)
 - [x] **インポータ拡張: SPARQL一括選定**(`--preset`/`--sparql-file`・人間判定・並列取得・大域ラベル解決)
 - [x] **量産＋デプロイ準備**: Nobel物理/化学・米大統領・フィールズ賞で **613名**規模(person 5,154/stub含・assertion 20,558)/ DB層を `DATABASE_URL` で本番Postgres対応(`dbconn.mjs`)/ Dockerfile・render.yaml・[DEPLOY.md](DEPLOY.md)
-- [ ] 本番デプロイ実行(Neon/Supabase + Render等。アカウント接続が必要)
+- [x] **GitHub公開** <https://github.com/Jinshin2534/jinrui-db>(public)＋ Render向け同梱シード起動 `tools/boot.mjs`(613名を起動時にPGlite再構築・外部DB不要)
+- [ ] **Render接続**(あなたの操作のみ): repo を New Web Service / Blueprint で繋ぐ → 公開URL([DEPLOY.md](DEPLOY.md) §0)
 - [ ] 認証＋本人登録フロー(OAuth → account → stewardship → 署名付き self claim)
 - [ ] さらなる量産(数千〜)＋ 青空文庫等の他ソース
